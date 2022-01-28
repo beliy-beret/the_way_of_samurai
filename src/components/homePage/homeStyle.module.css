@@ -1,0 +1,17 @@
+.homepage {
+  padding: 1rem;
+  width: 90%;
+  margin: 0 auto;
+}
+.pageTitle {
+  font-size: 3rem;
+  text-align: center;
+}
+.technologies {
+  display: flex;
+  justify-content: space-evenly;
+}
+.technologies img {
+  width: 50px;
+  flex: 1 1 25%;
+}
