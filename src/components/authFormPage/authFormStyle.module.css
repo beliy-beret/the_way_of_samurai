@@ -12,18 +12,43 @@ input:nth-child(2) {
   border-top: 1px solid grey;
 }
 
+.authPage {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
 .authForm {
   width: 30rem;
-  margin: 0 auto;
+  height: fit-content;
+  margin-top: 20%;
   padding: 2.5rem 1.5rem;
   display: flex;
   flex-direction: column;
   background-color: tomato;
   border-radius: 5px;
 }
-.remember {
-  margin: 0.5rem 0;
+.rememberBlock {
+  margin-top: 0.5rem;
 }
 .submit {
+  margin-top: 1rem;
   padding: 0.3rem;
+}
+.errorMessage {
+  margin: 0.2rem 0;
+}
+.captchaBlock {
+  display: flex;
+  flex-direction: column;
+}
+.captchaBlock input {
+  max-width: 50%;
+  margin-top: 0.5rem;
+  border-radius: 0;
+  font-size: 1rem;
+}
+.captcha {
+  width: 200px;
+  height: 80px;
+  margin-top: 0.5rem;
 }

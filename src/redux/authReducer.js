@@ -13,7 +13,8 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     userData: {},
-    captcha: null,
+    captcha:
+      'https://www.okta.com/sites/default/files/media/image/2021-04/Okta-Captcha.png',
     isAuth: false,
     isLoading: false,
     errors: null,
