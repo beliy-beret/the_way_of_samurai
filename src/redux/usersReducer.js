@@ -3,8 +3,8 @@ import { getUserList } from '../API';
 
 export const fetchUserList = createAsyncThunk(
   'users/fetchUserList',
-  async (currentPage) => {
-    const userList = await getUserList(currentPage);
+  async (currentPage, pageSize) => {
+    const userList = await getUserList(currentPage, pageSize);
     return userList;
   }
 );
@@ -13,7 +13,8 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState: {
     userList: [],
-    totalPage: null,
+    pageSize: 10,
+    totalUsers: null,
     currentPage: 1,
     isLoading: false,
     errors: null,
@@ -30,7 +31,7 @@ export const usersSlice = createSlice({
     },
     [fetchUserList.fulfilled]: (state, action) => {
       state.userList = action.payload.items;
-      state.totalPage = action.payload.totalCount;
+      state.totalUsers = action.payload.totalCount;
       state.isLoading = false;
       state.errors = null;
     },

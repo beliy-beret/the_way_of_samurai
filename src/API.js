@@ -28,20 +28,21 @@ export async function getCaptcha() {
   return resp.data;
 }
 
-export async function getUserList(page) {
+export async function getUserList(page, count) {
   const resp = await instance.get('users', {
     params: {
       page,
-      count: 10,
+      count,
     },
   });
   return resp.data;
 }
 
-export async function getFriendList(page) {
+export async function getFriendList(page, count) {
   const resp = await instance.get('users', {
     params: {
       page,
+      count,
       friend: true,
     },
   });
