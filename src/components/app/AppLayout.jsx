@@ -9,7 +9,7 @@ export default function AppLayout() {
   return (
     <>
       <header>
-        <span>Way of the Samurai</span>
+        <span>The way of the Samurai</span>
         <button onClick={() => navigate('auth')}>
           {auth ? 'Sing Out' : 'Sing In'}
         </button>
@@ -30,6 +30,9 @@ export default function AppLayout() {
       <div className="pages">
         <Outlet />
       </div>
+      <footer>
+        <h2>Made in Russian )</h2>
+      </footer>
     </>
   );
 }

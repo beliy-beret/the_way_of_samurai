@@ -4,7 +4,7 @@ import style from './homeStyle.module.css';
 export default function Home() {
   return (
     <section className={style.homepage}>
-      <h2 className={style.pageTitle}>The way of the samurai.</h2>
+      <h2 className={style.pageTitle}>The way of the Samurai.</h2>
       <p className={style.appDescription}>
         This application is based on the lessons of Dmitry Kuzyuberdin. To check
         the full functionality of the application, you need to register on the

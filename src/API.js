@@ -27,3 +27,23 @@ export async function getCaptcha() {
   const resp = await instance.get('security/get-captcha-url');
   return resp.data;
 }
+
+export async function getUserList(page) {
+  const resp = await instance.get('users', {
+    params: {
+      page,
+      count: 10,
+    },
+  });
+  return resp.data;
+}
+
+export async function getFriendList(page) {
+  const resp = await instance.get('users', {
+    params: {
+      page,
+      friend: true,
+    },
+  });
+  return resp.data;
+}
