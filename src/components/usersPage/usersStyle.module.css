@@ -1,10 +1,13 @@
-.title {
-  text-align: center;
+.header {
   position: sticky;
   top: 0;
+  background-color: #ffff;
+  padding: 0.2rem;
+}
+.title {
+  text-align: center;
   text-decoration: underline;
   background-color: #fff;
-  padding: 0.3rem 0;
 }
 .userBox {
   display: grid;
@@ -35,4 +38,37 @@
 .link {
   grid-column: 2;
   grid-row: 3;
+}
+.pagination {
+  width: 90%;
+  margin: 0.5rem auto;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+.pagination a {
+  color: black;
+  font-weight: normal;
+}
+.pagination li:first-child,
+.pagination li:last-child {
+  padding: 0.3rem;
+  background-color: rgb(177, 169, 169);
+  font-size: 1rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+.page {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 0.3rem;
+  background-color: rgb(177, 169, 169);
+  font-size: 1rem;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+.selected {
+  background-color: rgb(124, 213, 243);
 }
