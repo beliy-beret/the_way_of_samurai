@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchUserList } from '../../redux/usersReducer';
+import { fetchUserList, setCurrentPage } from '../../redux/usersReducer';
 import ReactPaginate from 'react-paginate';
 import User from './User';
 import style from './usersStyle.module.css';
@@ -12,10 +12,15 @@ export default function UsersPage() {
     (state) => state.users
   );
   const totalPages = Math.ceil(totalUsers / pageSize);
+
+  function setActivePage(e) {
+    dispatch(setCurrentPage(e.selected + 1));
+  }
+
   useEffect(() => {
     dispatch(fetchUserList(currentPage));
   }, [currentPage, dispatch]);
-  console.log(userList);
+
   return (
     <section className={style.usersPage}>
       <div className={style.header}>
@@ -27,10 +32,11 @@ export default function UsersPage() {
           previousLabel={'prev'}
           nextLabel={'next'}
           breakLabel={'...'}
-          initialPage={currentPage}
+          initialPage={currentPage - 1}
           containerClassName={style.pagination}
           activeClassName={style.selected}
           pageClassName={style.page}
+          onPageChange={setActivePage}
         />
       </div>
       {userList?.map((user) => (
