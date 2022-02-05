@@ -4,6 +4,7 @@ import Home from '../homePage/HomePage';
 import AppLayout from './AppLayout';
 import AuthFormPage from '../authFormPage/AuthFormPage';
 import UsersPage from '../usersPage/UsersPage';
+import ProfilePage from '../profilePage/ProfilePage';
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="auth" element={<AuthFormPage />} />
         <Route path="users" element={<UsersPage />} />
+        <Route path="id=:id" element={<ProfilePage />} />
       </Route>
     </Routes>
   );

@@ -12,7 +12,7 @@ export const fetchAuthUserData = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
-    userData: {},
+    userData: null,
     captcha:
       'https://www.okta.com/sites/default/files/media/image/2021-04/Okta-Captcha.png',
     isAuth: false,

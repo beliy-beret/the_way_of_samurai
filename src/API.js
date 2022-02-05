@@ -48,3 +48,8 @@ export async function getFriendList(page, count) {
   });
   return resp.data;
 }
+
+export async function getUserProfile(id) {
+  const resp = await instance.get(`profile/${id}`);
+  return resp.data;
+}
