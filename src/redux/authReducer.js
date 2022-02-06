@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAuthUserData } from '../API';
+import { getAuthUserData, getCaptcha } from '../API';
 
 export const fetchAuthUserData = createAsyncThunk(
   'auth/fetchAuthUserData',
@@ -9,12 +9,16 @@ export const fetchAuthUserData = createAsyncThunk(
   }
 );
 
+export const fetchCaptcha = createAsyncThunk('auth/fetchCaptcha', async () => {
+  const captchaUrl = await getCaptcha();
+  return captchaUrl.url;
+});
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     userData: null,
-    captcha:
-      'https://www.okta.com/sites/default/files/media/image/2021-04/Okta-Captcha.png',
+    captcha: null,
     isAuth: false,
     isLoading: false,
     errors: null,
@@ -32,6 +36,10 @@ export const authSlice = createSlice({
     },
     [fetchAuthUserData.rejected]: (state) => {
       state.errors = 'Some error';
+      state.isLoading = false;
+    },
+    [fetchCaptcha.fulfilled]: (state, action) => {
+      state.captcha = action.payload;
       state.isLoading = false;
     },
   },

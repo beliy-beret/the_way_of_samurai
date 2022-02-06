@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { postAuthData } from '../../API';
-import { fetchAuthUserData } from '../../redux/authReducer';
+import { fetchAuthUserData, fetchCaptcha } from '../../redux/authReducer';
 import style from './authFormStyle.module.css';
 
 export default function App() {
@@ -11,8 +11,17 @@ export default function App() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm();
+    setError,
+    clearErrors,
+    reset,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: 'onBlur',
+  });
+
+  function submitError() {
+    setError('form', { message: 'Incorrect email or password !' });
+  }
 
   async function onSubmit(formValues) {
     const result = await postAuthData(
@@ -21,11 +30,23 @@ export default function App() {
       formValues.remember,
       formValues.captcha
     );
-    if (result.resultCode === 0) {
-      await dispatch(fetchAuthUserData());
+    switch (result.resultCode) {
+      case 1:
+        submitError();
+        reset('password');
+        break;
+      case 10:
+        submitError();
+        reset('password');
+        dispatch(fetchCaptcha());
+        break;
+      default:
+        dispatch(fetchAuthUserData());
+        clearErrors();
+        break;
     }
   }
-
+  console.log(errors);
   return (
     <section className={style.authPage}>
       <form className={style.authForm} onSubmit={handleSubmit(onSubmit)}>
@@ -33,25 +54,42 @@ export default function App() {
           id="email"
           placeholder="Email"
           type="text"
-          {...register('email', { required: true })}
+          {...register('email', {
+            required: {
+              value: true,
+              message: 'This field is required',
+            },
+          })}
         />
         {errors.email && (
-          <span className={style.errorMessage}>This field is required</span>
+          <p className={style.errorMessage}>{errors.email.message}</p>
         )}
         <input
           id="password"
           placeholder="Password"
           type="password"
-          {...register('password', { required: true })}
+          {...register('password', {
+            required: {
+              value: true,
+              message: 'This field is required',
+            },
+            minLength: { value: 8, message: 'Minimal length 8 symbol' },
+          })}
         />
         {errors.password && (
-          <span className={style.errorMessage}>This field is required</span>
+          <p className={style.errorMessage}>{errors.password.message}</p>
         )}
         <div className={style.rememberBlock}>
           <input id="remember" type="checkbox" {...register('remember')} />
           <label htmlFor="remember">Remember me</label>
         </div>
-        <button className={style.submit}>Sing in</button>
+        {errors.form && (
+          <p className={style.errorMessage}>{errors.form.message}</p>
+        )}
+        <button className={style.submit} disabled={!isValid}>
+          Sing in
+        </button>
+
         {captcha && (
           <div className={style.captchaBlock}>
             <input

@@ -35,7 +35,10 @@ input:nth-child(2) {
   padding: 0.3rem;
 }
 .errorMessage {
-  margin: 0.2rem 0;
+  margin: 0.3rem 0;
+  text-align: center;
+  color: rgb(210, 241, 28);
+  font-weight: bold;
 }
 .captchaBlock {
   display: flex;
