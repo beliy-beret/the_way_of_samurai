@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { fetchUserProfile } from '../../redux/profileReducer';
 import style from './profilePage.module.css';
+import UserAva from './UserAva';
 
 export default function ProfilePage() {
   const dispatch = useDispatch();
@@ -32,14 +33,7 @@ export default function ProfilePage() {
 
   return (
     <section className={style.user}>
-      <img
-        className={style.userAva}
-        src={
-          userData.photos.large ||
-          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRr3Q9EuafHKqLgY91DmUD-Hc1sQCdSP_ms4g&usqp=CAU'
-        }
-        alt="user ava"
-      />
+      <UserAva userAva={userData.photos.large} />
       <h2 className={style.username}>{userData.fullName}</h2>
       <span className={userStatus ? style.userStatus : style.disable}>
         {userStatus}
