@@ -26,7 +26,26 @@ export async function putUserPhoto(file) {
       'Content-Type': 'multipart/form-data',
     },
   });
-  return resp.data;
+  return resp.data.resultCode;
+}
+
+export async function putUserData(userData, userId) {
+  const resp = await instance.put('profile', {
+    userId,
+    fullName: userData.fullName,
+    aboutMe: userData.about,
+    lookingForAJob: userData.lookingForAJob,
+    lookingForAJobDescription: userData.aboutJob,
+    contacts: {
+      github: userData.github,
+      vk: userData.vk,
+      facebook: userData.facebook,
+      instagram: userData.instagram,
+      twitter: userData.twitter,
+      website: userData.website,
+    },
+  });
+  return resp.data.resultCode;
 }
 
 export async function getAuthUserData() {

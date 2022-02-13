@@ -23,7 +23,7 @@ export default function ProfilePage() {
   return (
     <section className={style.user}>
       <div className={style.userAva}>
-        <UserAva isOwner={isOwner} />
+        <UserAva isOwner={isOwner} userId={authUserId} />
       </div>
       <div className={style.userInfo}>
         {!editMode ? (

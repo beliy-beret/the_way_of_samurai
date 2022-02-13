@@ -25,6 +25,9 @@
 .fieldTitle.about {
   align-self: flex-start;
 }
+.field.job {
+  display: block;
+}
 .fieldInputArea {
   flex: 1 1 90%;
   padding: 0.5rem;

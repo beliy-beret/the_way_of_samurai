@@ -33,6 +33,12 @@ export default function UserInfo({ isOwner, toggleEditMode }) {
         <h3>About me:</h3>
         <p>{userData.aboutMe}</p>
       </div>
+      <div
+        className={userData.lookingForAJob ? style.aboutUser : style.disable}
+      >
+        <h3>My job:</h3>
+        <p>{userData.lookingForAJobDescription}</p>
+      </div>
       <div className={style.userContacts}>
         <h3>My contacts:</h3>
         <ul>{sortContacts(userData.contacts)}</ul>
