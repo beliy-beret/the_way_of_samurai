@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import HomePage from '../homePage/HomePage';
+import HomePage from '../HomePage/HomePage';
 import AppLayout from './AppLayout';
-import AuthPage from '../authPage/AuthPage';
-import UsersPage from '../usersPage/UsersPage';
-import ProfilePage from '../profilePage/ProfilePage';
+import AuthPage from '../AuthPage/AuthPage';
+import UsersPage from '../UsersPage/UsersPage';
+import ProfilePage from '../ProfilePage/ProfilePage';
 
 export default function App() {
   return (

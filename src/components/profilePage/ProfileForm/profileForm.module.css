@@ -1,0 +1,37 @@
+.form {
+  width: 80%;
+}
+.form button {
+  padding: 0.2rem 0.5rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px 5px rgb(116, 113, 113);
+  cursor: pointer;
+}
+.form button:hover {
+  background-color: rgb(219, 212, 212);
+}
+.field {
+  display: flex;
+  margin-top: 0.5rem;
+  align-items: center;
+}
+.fieldTitle {
+  flex: 1 1 20%;
+  margin-right: 0.5rem;
+}
+.fieldTitle.about {
+  align-self: flex-start;
+}
+.fieldInputArea {
+  flex: 1 1 90%;
+  padding: 0.5rem;
+}
+.contacts {
+  margin: 0.5rem;
+}
+.contacts .field {
+  margin-left: 1rem;
+}

@@ -1,17 +1,16 @@
-input {
+.authForm input {
   padding: 0.5rem;
   font-size: 1.2rem;
   border: none;
 }
-input:nth-child(1) {
+.authForm input:nth-child(1) {
   border-radius: 5px 5px 0 0;
   border-bottom: 1px solid grey;
 }
-input:nth-child(2) {
+.authForm input:nth-child(2) {
   border-radius: 0 0 5px 5px;
   border-top: 1px solid grey;
 }
-
 .authPage {
   display: flex;
   justify-content: center;

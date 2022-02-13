@@ -28,22 +28,14 @@ export const profileSlice = createSlice({
         small: '',
       },
     },
-    userStatus: '',
     isLoading: false,
-    errors: null,
   },
   extraReducers: {
     [fetchUserProfile.pending]: (state) => {
       state.isLoading = true;
-      state.errors = null;
     },
     [fetchUserProfile.fulfilled]: (state, action) => {
       state.userData = action.payload;
-      state.isLoading = false;
-      state.errors = null;
-    },
-    [fetchUserProfile.rejected]: (state) => {
-      state.errors = 'Some error';
       state.isLoading = false;
     },
   },

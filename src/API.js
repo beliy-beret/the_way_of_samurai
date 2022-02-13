@@ -18,6 +18,17 @@ export async function postAuthData(email, password, rememberMe, captcha) {
   return resp.data;
 }
 
+export async function putUserPhoto(file) {
+  const formData = new FormData();
+  formData.append('image', file);
+  const resp = await instance.put('profile/photo', formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  return resp.data;
+}
+
 export async function getAuthUserData() {
   const resp = await instance.get('auth/me');
   return resp.data;
