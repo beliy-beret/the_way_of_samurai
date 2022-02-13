@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import style from './usersStyle.module.css';
+import style from './user.module.css';
 
 export default function User({ user }) {
   return (
-    <div className={style.userBox}>
+    <div className={style.user}>
       <img
         className={style.userAva}
         src={

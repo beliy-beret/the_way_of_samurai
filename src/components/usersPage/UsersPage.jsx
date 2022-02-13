@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { fetchUserList, setCurrentPage } from '../../redux/usersReducer';
 import ReactPaginate from 'react-paginate';
-import User from './User';
-import style from './usersStyle.module.css';
+import User from './User/User';
+import style from './usersPage.module.css';
 
 export default function UsersPage() {
   const dispatch = useDispatch();
