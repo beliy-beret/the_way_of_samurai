@@ -18,6 +18,11 @@ export async function postAuthData(email, password, rememberMe, captcha) {
   return resp.data;
 }
 
+export async function deleteAuthKey() {
+  const resp = await instance.delete('auth/login');
+  return resp.data.resultCode;
+}
+
 export async function putUserPhoto(file) {
   const formData = new FormData();
   formData.append('image', file);

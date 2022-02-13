@@ -1,19 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { deleteAuthUserData } from '../../redux/authReducer';
 import './appLayout.css';
 
 export default function AppLayout() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth, userData } = useSelector((state) => state.authUser);
+  function Logout() {
+    dispatch(deleteAuthUserData());
+  }
 
   return (
     <>
       <header>
         <span>The way of the Samurai</span>
-        <button onClick={() => navigate('auth')}>
-          {isAuth ? 'Sing Out' : 'Sing In'}
-        </button>
+        {isAuth ? (
+          <button onClick={Logout}>Sing Out</button>
+        ) : (
+          <button onClick={() => navigate('auth')}>Sing In</button>
+        )}
       </header>
       <aside>
         <ul>

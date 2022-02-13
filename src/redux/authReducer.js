@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getAuthUserData, getCaptcha } from '../API';
+import { deleteAuthKey, getAuthUserData, getCaptcha } from '../API';
 
 export const fetchAuthUserData = createAsyncThunk(
   'auth/fetchAuthUserData',
@@ -13,6 +13,13 @@ export const fetchCaptcha = createAsyncThunk('auth/fetchCaptcha', async () => {
   const captchaUrl = await getCaptcha();
   return captchaUrl.url;
 });
+
+export const deleteAuthUserData = createAsyncThunk(
+  'auth/deleteAuthUserData',
+  async () => {
+    await deleteAuthKey();
+  }
+);
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -40,6 +47,13 @@ export const authSlice = createSlice({
     },
     [fetchCaptcha.fulfilled]: (state, action) => {
       state.captcha = action.payload;
+      state.isLoading = false;
+    },
+    [deleteAuthUserData.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [deleteAuthUserData.fulfilled]: (state) => {
+      state.isAuth = false;
       state.isLoading = false;
     },
   },
