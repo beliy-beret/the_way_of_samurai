@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://beliy-beret.github.io/the_way_of_samurai",
+  "homepage": "https://beliy-beret.github.io/the_way_of_samurai/",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
