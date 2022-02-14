@@ -38,3 +38,7 @@
 .contacts .field {
   margin-left: 1rem;
 }
+.error {
+  color: yellowgreen;
+  font-weight: bold;
+}

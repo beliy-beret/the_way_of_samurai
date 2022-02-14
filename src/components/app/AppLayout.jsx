@@ -9,7 +9,12 @@ export default function AppLayout() {
   const navigate = useNavigate();
   const { isAuth, userData } = useSelector((state) => state.authUser);
   function Logout() {
-    dispatch(deleteAuthUserData());
+    try {
+      dispatch(deleteAuthUserData());
+      navigate('/');
+    } catch {
+      console.log('Logout is broken');
+    }
   }
 
   return (
