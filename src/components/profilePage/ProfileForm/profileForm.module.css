@@ -38,7 +38,8 @@
 .contacts .field {
   margin-left: 1rem;
 }
-.error {
-  color: yellowgreen;
+.errorMessage {
+  color: rgb(209, 77, 53);
   font-weight: bold;
+  margin-left: 0.5rem;
 }

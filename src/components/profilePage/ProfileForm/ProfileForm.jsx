@@ -9,14 +9,20 @@ import style from './profileForm.module.css';
 export default function ProfileForm({ toggleEditMode }) {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.userProfile.userData);
-  const { register, handleSubmit } = useForm();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: 'onBlur',
+  });
+
   async function onSubmit(formValues) {
     const result = await putUserData(formValues, userData.userId);
     if (result === 0) {
       dispatch(fetchUserProfile(userData.userId));
       toggleEditMode();
-    } else {
-      alert('Oops, some error !');
     }
   }
   return (
@@ -30,8 +36,16 @@ export default function ProfileForm({ toggleEditMode }) {
           id="fullName"
           type="text"
           defaultValue={userData.fullName}
-          {...register('fullName')}
+          {...register('fullName', {
+            required: {
+              value: true,
+              message: 'This field is required !',
+            },
+          })}
         />
+        {errors.fullName && (
+          <p className={style.errorMessage}>{errors.fullName.message}</p>
+        )}
       </div>
       <div className={style.field}>
         <label className={`${style.fieldTitle} ${style.about}`} htmlFor="about">
@@ -42,8 +56,16 @@ export default function ProfileForm({ toggleEditMode }) {
           id="about"
           type="text"
           defaultValue={userData.aboutMe}
-          {...register('about')}
+          {...register('about', {
+            required: {
+              value: true,
+              message: 'This field is required !',
+            },
+          })}
         />
+        {errors.about && (
+          <p className={style.errorMessage}>{errors.about.message}</p>
+        )}
       </div>
       <div className={`${style.field} ${style.job}`}>
         <label className={style.fieldTitle} htmlFor="lookingForAJob">
@@ -68,8 +90,16 @@ export default function ProfileForm({ toggleEditMode }) {
           id="about"
           type="text"
           defaultValue={userData.lookingForAJobDescription}
-          {...register('aboutJob')}
+          {...register('aboutJob', {
+            required: {
+              value: true,
+              message: 'This field is required !',
+            },
+          })}
         />
+        {errors.aboutJob && (
+          <p className={style.errorMessage}>{errors.aboutJob.message}</p>
+        )}
       </div>
       <div className={style.contacts}>
         <h2 className={style.contactsTitle}>Contacts:</h2>
@@ -147,7 +177,7 @@ export default function ProfileForm({ toggleEditMode }) {
         </div>
       </div>
 
-      <button onClick={onSubmit} type="submit">
+      <button onClick={onSubmit} type="submit" disabled={!isValid}>
         Save
       </button>
       <button onClick={toggleEditMode}>Close</button>

@@ -9,11 +9,10 @@ export default function UserAva({ isOwner, userId }) {
   const dispatch = useDispatch();
   async function handleFile(e) {
     const result = await putUserPhoto(e.target.files[0]);
-    debugger;
     if (result === 0) {
       dispatch(fetchUserProfile(userId));
     } else {
-      alert('Wrong image format !');
+      alert(JSON.stringify(result.messages));
     }
   }
   const userAva = useSelector(
