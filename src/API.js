@@ -8,12 +8,12 @@ const instance = axios.create({
   },
 });
 
-export async function postAuthData(email, password, rememberMe, captcha) {
+export async function postAuthData(formData) {
   const resp = await instance.post('auth/login', {
-    email,
-    password,
-    rememberMe,
-    captcha,
+    email: formData.email,
+    password: formData.password,
+    rememberMe: formData.rememberMe,
+    captcha: formData.captcha,
   });
   return resp.data;
 }

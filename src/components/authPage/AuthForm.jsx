@@ -9,7 +9,7 @@ export default function AuthForm({
   register,
   isValid,
 }) {
-  const captcha = useSelector((state) => state.authUser.captcha);
+  const { captcha, error } = useSelector((state) => state.authUser);
   return (
     <form className={style.authForm} onSubmit={handleSubmit(onSubmit)}>
       <input
@@ -42,12 +42,10 @@ export default function AuthForm({
         <p className={style.errorMessage}>{errors.password.message}</p>
       )}
       <div className={style.rememberBlock}>
-        <input id="remember" type="checkbox" {...register('remember')} />
+        <input id="remember" type="checkbox" {...register('rememberMe')} />
         <label htmlFor="remember">Remember me</label>
       </div>
-      {errors.form && (
-        <p className={style.errorMessage}>{errors.form.message}</p>
-      )}
+      {error && <p className={style.errorMessage}>{error}</p>}
       <button className={style.submit} disabled={!isValid}>
         Sing in
       </button>
