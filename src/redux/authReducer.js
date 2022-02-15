@@ -45,6 +45,14 @@ export const authSlice = createSlice({
     isLoading: false,
     error: null,
   },
+  reducers: {
+    deleteAuthData(state) {
+      state.userData = null;
+    },
+    deleteCaptcha(state) {
+      state.captcha = null;
+    },
+  },
   extraReducers: {
     [fetchAuthUserData.pending]: (state) => {
       state.isLoading = true;
@@ -77,4 +85,5 @@ export const authSlice = createSlice({
   },
 });
 
+export const { deleteAuthData, deleteCaptcha } = authSlice.actions;
 export default authSlice.reducer;

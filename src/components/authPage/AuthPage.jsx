@@ -1,7 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchAuthUserData, fetchCaptcha } from '../../redux/authReducer';
+import {
+  deleteCaptcha,
+  fetchAuthUserData,
+  fetchCaptcha,
+} from '../../redux/authReducer';
 import AuthForm from './AuthForm';
 import style from './authForm.module.css';
 
@@ -22,6 +26,7 @@ export default function App() {
       dispatch(fetchCaptcha());
     } else {
       navigate(`/id=${res.payload.id}`);
+      dispatch(deleteCaptcha());
     }
   }
 
