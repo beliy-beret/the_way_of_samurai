@@ -19,12 +19,8 @@ export const fetchAuthUserData = createAsyncThunk(
     if (result.resultCode === 0) {
       const authUserData = await getAuthUserData();
       return authUserData.data;
-    }
-    if (result.resultCode === 1) {
-      throw Error(result.messages[0]);
-    }
-    if (result.resultCode === 10) {
-      throw Error(result.messages[0]);
+    } else {
+      throw Error(`${result.messages[0]}, status = ${result.resultCode}`);
     }
   }
 );

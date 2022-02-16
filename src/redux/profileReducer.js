@@ -32,6 +32,7 @@ export const profileSlice = createSlice({
       },
     },
     isLoading: false,
+    error: null,
   },
   extraReducers: {
     [fetchUserProfile.pending]: (state) => {
@@ -39,6 +40,10 @@ export const profileSlice = createSlice({
     },
     [fetchUserProfile.fulfilled]: (state, action) => {
       state.userData = action.payload;
+      state.isLoading = false;
+    },
+    [fetchUserProfile.rejected]: (state, action) => {
+      state.error = action.error;
       state.isLoading = false;
     },
   },
