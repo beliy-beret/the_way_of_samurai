@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/the_way_of_samurai/static/css/main.4bc7a167.css",
-    "main.js": "/the_way_of_samurai/static/js/main.31e26e4f.js",
+    "main.js": "/the_way_of_samurai/static/js/main.a531f632.js",
     "static/media/editButton.png": "/the_way_of_samurai/static/media/editButton.9c6a6788d30b33942379.png",
     "index.html": "/the_way_of_samurai/index.html",
     "main.4bc7a167.css.map": "/the_way_of_samurai/static/css/main.4bc7a167.css.map",
-    "main.31e26e4f.js.map": "/the_way_of_samurai/static/js/main.31e26e4f.js.map"
+    "main.a531f632.js.map": "/the_way_of_samurai/static/js/main.a531f632.js.map"
   },
   "entrypoints": [
     "static/css/main.4bc7a167.css",
-    "static/js/main.31e26e4f.js"
+    "static/js/main.a531f632.js"
   ]
 }
