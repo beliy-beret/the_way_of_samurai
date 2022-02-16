@@ -6,9 +6,12 @@ export default function Home() {
     <section className={style.homepage}>
       <h2 className={style.pageTitle}>The way of the Samurai.</h2>
       <p className={style.appDescription}>
-        This application is based on the lessons of Dmitry Kuzyuberdin. to check
-        the full functionality of the application, you need to go through
-        authorization with test data.
+        This application is based on the lessons of Dmitry Kuzyuberdin. If you
+        are want to check authorization options, you can use test data or create
+        your own account on the site{' '}
+        <a href="https://social-network.samuraijs.com/">Social Network API</a>.
+        If you are want check all options you must buy a license or contact with
+        me.
       </p>
       <div className={style.testData}>
         <span>email: test1209@internet.ru</span>
