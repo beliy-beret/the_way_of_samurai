@@ -1,14 +1,16 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector, useDispatch } from 'react-redux';
-import { putUserData } from '../../../API';
-import { fetchUserProfile } from '../../../redux/profileReducer';
+import {
+  fetchUserProfile,
+  updateUserProfile,
+} from '../../../redux/profileReducer';
 
 import style from './profileForm.module.css';
 
 export default function ProfileForm({ toggleEditMode }) {
   const dispatch = useDispatch();
-  const userData = useSelector((state) => state.userProfile.userData);
+  const { userData, error } = useSelector((state) => state.userProfile);
 
   const {
     register,
@@ -19,12 +21,17 @@ export default function ProfileForm({ toggleEditMode }) {
   });
 
   async function onSubmit(formValues) {
-    const result = await putUserData(formValues, userData.userId);
-    if (result === 0) {
-      dispatch(fetchUserProfile(userData.userId));
+    const data = {
+      formValues,
+      userId: userData.userId,
+    };
+    const res = await dispatch(updateUserProfile(data));
+    if (res.meta.requestStatus === 'fulfilled') {
+      await dispatch(fetchUserProfile(userData.userId));
       toggleEditMode();
     }
   }
+
   return (
     <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
       <div className={style.field}>
@@ -176,7 +183,7 @@ export default function ProfileForm({ toggleEditMode }) {
           />
         </div>
       </div>
-
+      {error && <p className={style.errorMessage}>{error}</p>}
       <button onClick={onSubmit} type="submit" disabled={!isValid}>
         Save
       </button>

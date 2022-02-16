@@ -36,7 +36,7 @@ export async function putUserPhoto(file) {
 
 export async function putUserData(userData, userId) {
   const resp = await instance.put('profile', {
-    userId,
+    userId: userId,
     fullName: userData.fullName,
     aboutMe: userData.about,
     lookingForAJob: userData.lookingForAJob,
@@ -50,7 +50,7 @@ export async function putUserData(userData, userId) {
       website: userData.website,
     },
   });
-  return resp.data.resultCode;
+  return resp.data;
 }
 
 export async function getAuthUserData() {

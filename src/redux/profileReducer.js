@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUserProfile } from '../API';
+import { getUserProfile, putUserData } from '../API';
 
 export const fetchUserProfile = createAsyncThunk(
   'profile/fetchUserProfile',
@@ -9,6 +9,16 @@ export const fetchUserProfile = createAsyncThunk(
       return userProfile;
     } catch {
       throw Error('Abort request !');
+    }
+  }
+);
+
+export const updateUserProfile = createAsyncThunk(
+  'profile/updateUserProfile',
+  async (data) => {
+    const res = await putUserData(data.formValues, data.userId);
+    if (res.resultCode === 1) {
+      throw Error(res.messages[0]);
     }
   }
 );
@@ -50,10 +60,23 @@ export const profileSlice = createSlice({
     [fetchUserProfile.fulfilled]: (state, action) => {
       state.userData = action.payload;
       state.isLoading = false;
+      state.error = null;
     },
     [fetchUserProfile.rejected]: (state, action) => {
       state.error = action.error;
       state.isLoading = false;
+    },
+
+    [updateUserProfile.pending]: (state) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [updateUserProfile.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [updateUserProfile.rejected]: (state, action) => {
+      state.error = action.error.message;
+      state.isLoading = true;
     },
   },
 });
