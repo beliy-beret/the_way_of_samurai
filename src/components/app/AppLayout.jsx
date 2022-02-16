@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { deleteAuthUserData } from '../../redux/authReducer';
+import { deleteUserProfile } from '../../redux/profileReducer';
 import './appLayout.css';
 
 export default function AppLayout() {
@@ -11,6 +12,7 @@ export default function AppLayout() {
   function Logout() {
     try {
       dispatch(deleteAuthUserData());
+      dispatch(deleteUserProfile());
       navigate('/');
     } catch {
       console.log('Logout is broken');

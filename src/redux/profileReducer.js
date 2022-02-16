@@ -4,8 +4,12 @@ import { getUserProfile } from '../API';
 export const fetchUserProfile = createAsyncThunk(
   'profile/fetchUserProfile',
   async (userId) => {
-    const userProfile = await getUserProfile(userId);
-    return userProfile;
+    try {
+      const userProfile = await getUserProfile(userId);
+      return userProfile;
+    } catch {
+      throw Error('Abort request !');
+    }
   }
 );
 
@@ -34,6 +38,11 @@ export const profileSlice = createSlice({
     isLoading: false,
     error: null,
   },
+  reducers: {
+    deleteUserProfile(state) {
+      state.userData = null;
+    },
+  },
   extraReducers: {
     [fetchUserProfile.pending]: (state) => {
       state.isLoading = true;
@@ -49,4 +58,5 @@ export const profileSlice = createSlice({
   },
 });
 
+export const { deleteUserProfile } = profileSlice.actions;
 export default profileSlice.reducer;
