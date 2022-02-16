@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUserProfile, putUserData } from '../API';
+import { getUserProfile, putUserData, putUserPhoto } from '../API';
 
 export const fetchUserProfile = createAsyncThunk(
   'profile/fetchUserProfile',
@@ -17,6 +17,16 @@ export const updateUserProfile = createAsyncThunk(
   'profile/updateUserProfile',
   async (data) => {
     const res = await putUserData(data.formValues, data.userId);
+    if (res.resultCode === 1) {
+      throw Error(res.messages[0]);
+    }
+  }
+);
+
+export const changeUserPhoto = createAsyncThunk(
+  'profile/changeUserPhoto',
+  async (file) => {
+    const res = await putUserPhoto(file);
     if (res.resultCode === 1) {
       throw Error(res.messages[0]);
     }
@@ -69,14 +79,26 @@ export const profileSlice = createSlice({
 
     [updateUserProfile.pending]: (state) => {
       state.isLoading = true;
-      state.error = null;
     },
     [updateUserProfile.fulfilled]: (state) => {
       state.isLoading = false;
+      state.error = null;
     },
     [updateUserProfile.rejected]: (state, action) => {
       state.error = action.error.message;
+      state.isLoading = false;
+    },
+
+    [changeUserPhoto.pending]: (state) => {
       state.isLoading = true;
+    },
+    [changeUserPhoto.fulfilled]: (state) => {
+      state.error = null;
+      state.isLoading = false;
+    },
+    [changeUserPhoto.rejected]: (state, action) => {
+      state.error = action.error.message;
+      state.isLoading = false;
     },
   },
 });

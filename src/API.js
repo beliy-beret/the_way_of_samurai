@@ -31,7 +31,7 @@ export async function putUserPhoto(file) {
       'Content-Type': 'multipart/form-data',
     },
   });
-  return resp.data.resultCode;
+  return resp.data;
 }
 
 export async function putUserData(userData, userId) {

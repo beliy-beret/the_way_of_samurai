@@ -2,17 +2,17 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import style from './userAva.module.css';
 import samurai from '../../../images/samurai.jpg';
-import { putUserPhoto } from '../../../API';
-import { fetchUserProfile } from '../../../redux/profileReducer';
+import {
+  changeUserPhoto,
+  fetchUserProfile,
+} from '../../../redux/profileReducer';
 
 export default function UserAva({ isOwner, userId }) {
   const dispatch = useDispatch();
   async function handleFile(e) {
-    const result = await putUserPhoto(e.target.files[0]);
-    if (result === 0) {
-      dispatch(fetchUserProfile(userId));
-    } else {
-      alert(JSON.stringify(result.messages));
+    const res = await dispatch(changeUserPhoto(e.target.files[0]));
+    if (res.meta.requestStatus === 'fulfilled') {
+      await dispatch(fetchUserProfile(userId));
     }
   }
   const userAva = useSelector(

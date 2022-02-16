@@ -4,17 +4,17 @@ import { useSelector } from 'react-redux';
 import { fetchUserList, setCurrentPage } from '../../redux/usersReducer';
 import ReactPaginate from 'react-paginate';
 import User from './User/User';
+import Preloader from '../Preloader/Preloader';
 import style from './usersPage.module.css';
 
 export default function UsersPage() {
   const dispatch = useDispatch();
-  const { userList, pageSize, totalUsers, currentPage } = useSelector(
-    (state) => state.users
-  );
+  const { userList, pageSize, totalUsers, currentPage, isLoading } =
+    useSelector((state) => state.users);
   const totalPages = Math.ceil(totalUsers / pageSize);
 
-  function setActivePage(e) {
-    dispatch(setCurrentPage(e.selected + 1));
+  async function setActivePage(e) {
+    await dispatch(setCurrentPage(e.selected + 1));
   }
 
   useEffect(() => {
@@ -42,6 +42,7 @@ export default function UsersPage() {
       {userList?.map((user) => (
         <User key={user.id} user={user} />
       ))}
+      {isLoading && <Preloader />}
     </section>
   );
 }
