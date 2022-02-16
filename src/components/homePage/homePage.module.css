@@ -15,3 +15,13 @@
   width: 50px;
   flex: 1 1 25%;
 }
+.testData {
+  width: fit-content;
+  padding: 1rem;
+  margin: 1rem auto;
+  background-color: rgb(20, 19, 19);
+  color: beige;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

@@ -20,13 +20,13 @@ export default function App() {
     mode: 'onBlur',
   });
 
-  function onSubmit(formValues) {
-    const res = dispatch(fetchAuthUserData(formValues));
+  async function onSubmit(formValues) {
+    const res = await dispatch(fetchAuthUserData(formValues));
     if (res.meta.requestStatus === 'rejected') {
-      if (res.error.message.endsWith('10')) dispatch(fetchCaptcha());
+      if (res.error.message.endsWith('10')) await dispatch(fetchCaptcha());
     } else {
       navigate(`/id=${res.payload.id}`);
-      dispatch(deleteCaptcha());
+      await dispatch(deleteCaptcha());
     }
   }
 
