@@ -180,7 +180,7 @@ export default function ProfileForm({ toggleEditMode }) {
       <button onClick={onSubmit} type="submit" disabled={!isValid}>
         Save
       </button>
-      <button onClick={toggleEditMode}>Close</button>
+      <button onClick={toggleEditMode}>Cancel</button>
     </form>
   );
 }

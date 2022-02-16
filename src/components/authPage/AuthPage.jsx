@@ -1,4 +1,5 @@
 import { useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -6,12 +7,14 @@ import {
   fetchAuthUserData,
   fetchCaptcha,
 } from '../../redux/authReducer';
+import Preloader from '../Preloader/Preloader';
 import AuthForm from './AuthForm';
 import style from './authForm.module.css';
 
 export default function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.authUser.isLoading);
   const {
     register,
     handleSubmit,
@@ -39,6 +42,7 @@ export default function App() {
         errors={errors}
         isValid={isValid}
       />
+      {isLoading && <Preloader />}
     </section>
   );
 }
