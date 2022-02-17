@@ -14,8 +14,8 @@ export default function Home() {
         me.
       </p>
       <div className={style.testData}>
-        <span>email: test1209@internet.ru</span>
-        <span>password: Qwerty123</span>
+        <span>email: free@samuraijs.com</span>
+        <span>password: free</span>
       </div>
       <div className={style.technologies}>
         <img

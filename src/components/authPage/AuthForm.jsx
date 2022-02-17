@@ -35,7 +35,7 @@ export default function AuthForm({
             value: true,
             message: 'This field is required',
           },
-          minLength: { value: 8, message: 'Minimal length 8 symbol' },
+          minLength: { value: 3, message: 'Minimal length 8 symbol' },
         })}
       />
       {errors.password && (
